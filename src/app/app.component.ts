@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Notify } from 'notiflix';
+
 
 @Component({
     selector: 'app-root',
@@ -8,16 +9,21 @@ import { Meta } from '@angular/platform-browser';
 })
 export class AppComponent {
 
-    constructor(
-        public meta: Meta,
-    ) {
-        this.meta.addTag({ property: 'og:desc', content: 'root_desc' });
+    constructor() {
     }
 
-    tag: HTMLMetaElement | null = null;
+    notiflix_alert(type: string) {
+        switch (type) {
+            case 'success':
+                Notify.success('Success Alert');
+                break;
+            case 'warning':
+                Notify.warning('Warning Alert');
+                break;
+        }
+    }
 
     ngOnInit(): void {
-        this.tag = this.meta.getTag('property="og:desc"')
     }
 
 }

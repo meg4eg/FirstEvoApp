@@ -1,6 +1,19 @@
 <div class="container">
-	<a routerLink="/open-graph">Inline</a>
-	{{ tag?.content }}
 	<br>
+	<alert type="success">
+		<strong>Well done!</strong> You successfully read this important alert message.
+	</alert>
+	<alert type="info">
+		<strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+	</alert>
+	<alert type="warning">
+		<strong>Warning!</strong> Better check yourself, you're not looking too good.
+	</alert>
+	<alert type="danger">
+		<strong>Oh snap!</strong> Change a few things up and try submitting again.
+	</alert>
+
+	<button (click)="notiflix_alert('warning')">Notify Warning</button>
+	<button (click)="notiflix_alert('success')">success Warning</button>
 	<router-outlet></router-outlet>
 </div>
