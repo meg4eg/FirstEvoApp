@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatTabsModule } from '@angular/material/tabs';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-root',
@@ -7,23 +7,17 @@ import { MatTabsModule } from '@angular/material/tabs';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-    public title = 'Hello';
-    public date = new Date();
-    public names = [
-        {
-            name: 'Борис',
-        },
-        {
-            name: 'Владимир',
-        },
-        {
-            name: 'Дмитрий',
-        },
-        {
-            name: 'Владимир',
-        },
-        {
-            name: 'Владимир',
-        },
-    ];
+
+    constructor(
+        public meta: Meta,
+    ) {
+        this.meta.addTag({ property: 'og:desc', content: 'root_desc' });
+    }
+
+    tag: HTMLMetaElement | null = null;
+
+    ngOnInit(): void {
+        this.tag = this.meta.getTag('property="og:desc"')
+    }
+
 }
