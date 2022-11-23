@@ -3,28 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlusFivePipe } from './plus-five.pipe';
-import { ContactComponent } from './contact/contact.component';
-import { AboutComponent } from './about/about.component';
-import { ItemComponent } from './item/item.component';
-import { DetailsComponent } from './item/details/details.component';
-import { ListComponent } from './item/list/list.component';
+import { MainComponent } from './main/main.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PlusFivePipe,
-    ContactComponent,
-    AboutComponent,
-    ItemComponent,
-    DetailsComponent,
-    ListComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MainComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatTabsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
