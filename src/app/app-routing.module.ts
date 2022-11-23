@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookComponent } from './book/book.component';
 
 const routes: Routes = [
     {
-        path: 'item',
-        loadChildren: () => import('./page/page.module').then(m => m.PageModule),
+        path: 'book',
+        component: BookComponent,
     },
 ];
 
