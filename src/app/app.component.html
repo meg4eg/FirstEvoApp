@@ -1,7 +1,4 @@
 <h1>{{ title }}</h1>
-<app-component-b></app-component-b>
-<ul>
-	<li *ngFor="let name of names">{{ name.name }}</li>
-</ul>
-<p>Date: {{ date | date: 'dd/MM/YYYY'}}</p>
-<p>pipe number: {{ 5 | plusFive }}</p>
+<pre *ngFor="let resp of responseService.response">
+			{{ resp | json }}
+</pre>

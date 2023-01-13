@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ResponseService } from './response.service';
 
 @Component({
     selector: 'app-root',
@@ -6,23 +7,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+    constructor(public responseService: ResponseService) {
+    }
     public title = 'Hello';
-    public date = new Date();
-    public names = [
-        {
-            name: 'Борис',
-        },
-        {
-            name: 'Владимир',
-        },
-        {
-            name: 'Дмитрий',
-        },
-        {
-            name: 'Владимир',
-        },
-        {
-            name: 'Владимир',
-        },
-    ];
 }
