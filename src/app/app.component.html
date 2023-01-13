@@ -1,7 +1,75 @@
-<h1>{{ title }}</h1>
-<app-component-b></app-component-b>
-<ul>
-	<li *ngFor="let name of names">{{ name.name }}</li>
-</ul>
-<p>Date: {{ date | date: 'dd/MM/YYYY'}}</p>
-<p>pipe number: {{ 5 | plusFive }}</p>
+<div class="container">
+	<h1>{{ title }}</h1>
+
+	<form>
+		<label class="form-label">Название:
+			<input class="form-control"
+				   name="bookName"
+				   [(ngModel)]="book.name"
+				   type="text"
+				   required
+				   pattern="[а-яА-ЯеЁ]*"
+				   #bookName="ngModel"
+			>
+		</label>
+
+		<div *ngIf="bookName.invalid && (bookName.dirty || bookName.touched)">
+			<div *ngIf="bookName.hasError('required')" class="alert alert-danger mt-2">
+				Обаятельное поле должно быть заполнено
+			</div>
+			<div *ngIf="bookName.hasError('pattern')" class="alert alert-danger mt-2">
+				Только кириллица без пробелов, цифр и спец. символов
+			</div>
+		</div>
+
+		<br>
+		<label class="form-label">Автор:
+			<input class="form-control"
+				   name="bookAuthor"
+				   [(ngModel)]="book.author"
+				   type="text"
+				   required
+				   pattern="[а-яА-ЯеЁ]*"
+				   #bookAuthor="ngModel"
+			>
+		</label>
+
+		<div *ngIf="bookAuthor.invalid && (bookAuthor.dirty || bookAuthor.touched)">
+			<div *ngIf="bookAuthor.hasError('required')" class="alert alert-danger mt-2">
+				Обаятельное поле должно быть заполнено
+			</div>
+			<div *ngIf="bookAuthor.hasError('pattern')" class="alert alert-danger mt-2">
+				Только кириллица без пробелов, цифр и спец. символов
+			</div>
+		</div>
+		<br>
+		<button (click)="addBook()"
+				[disabled]="bookName.invalid || bookAuthor.invalid"
+		>
+			Добавить
+		</button>
+	</form>
+	<table class="table">
+		<thead>
+		<tr>
+			<th>
+				Номер
+			</th>
+			<th>
+				Название
+			</th>
+			<th>
+				Автор
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let book1 of books; let i = index">
+			<td>{{ i + 1 }}</td>
+			<td>{{ book1.name }}</td>
+			<td>{{ book1.author }}</td>
+		</tr>
+		</tbody>
+
+	</table>
+</div>

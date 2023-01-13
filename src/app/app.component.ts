@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+interface Book {
+    name: string;
+    author: string;
+}
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -7,22 +12,26 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     public title = 'Hello';
-    public date = new Date();
-    public names = [
+    public book = {
+        name: '',
+        author: '',
+    };
+
+    public books: Book[] = [
         {
-            name: 'Борис',
+            author: 'Me',
+            name: '1 book',
         },
         {
-            name: 'Владимир',
-        },
-        {
-            name: 'Дмитрий',
-        },
-        {
-            name: 'Владимир',
-        },
-        {
-            name: 'Владимир',
+            author: 'You',
+            name: '2 book',
         },
     ];
+
+    public addBook() {
+        this.books.push({
+            name: this.book.name,
+            author: this.book.author,
+        });
+    }
 }
