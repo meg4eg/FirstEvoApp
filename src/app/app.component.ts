@@ -11,7 +11,6 @@ export class AppComponent {
     constructor() {
     }
 
-    private randNumber = Math.floor(Math.random() * 101);
     public numbers: Array<number> = [];
     public numbersInterval$!: Subscription;
     public randomInterval$!: Subscription;
@@ -22,7 +21,7 @@ export class AppComponent {
         this.numbersInterval$ = intervalStream.subscribe(value => this.numbers.push(value));
 
         this.randomInterval$ = intervalStream.pipe(
-            map(value => `Random value: ${Math.floor(Math.random() * 101)}`),
+            map(() => `Random value: ${Math.floor(Math.random() * 101)}`),
         )
             .subscribe(
                 value => this.randoms.push(value)
