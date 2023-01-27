@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { interval, map, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -6,23 +7,31 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-    public title = 'Hello';
-    public date = new Date();
-    public names = [
-        {
-            name: 'Борис',
-        },
-        {
-            name: 'Владимир',
-        },
-        {
-            name: 'Дмитрий',
-        },
-        {
-            name: 'Владимир',
-        },
-        {
-            name: 'Владимир',
-        },
-    ];
+
+    constructor() {
+    }
+
+    private randNumber = Math.floor(Math.random() * 101);
+    public numbers: Array<number> = [];
+    public numbersInterval$!: Subscription;
+    public randomInterval$!: Subscription;
+    public randoms: Array<string> = [];
+
+    public start() {
+        const intervalStream = interval(2000);
+        this.numbersInterval$ = intervalStream.subscribe(value => this.numbers.push(value));
+
+        this.randomInterval$ = intervalStream.pipe(
+            map(value => `Random value: ${Math.floor(Math.random() * 101)}`),
+        )
+            .subscribe(
+                value => this.randoms.push(value)
+            );
+
+    }
+
+    public stop() {
+        this.numbersInterval$.unsubscribe();
+        this.randomInterval$.unsubscribe();
+    }
 }
