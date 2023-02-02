@@ -1,24 +1,37 @@
 
 <div class="container text-center">
-	<button class="btn btn-primary" (click)="start()">start</button>
-	<button class="btn btn-danger" (click)="stop()">stop</button>
 	<div class="row align-items-start">
-
 		<div class="col">
-			<h2>Numbers</h2>
-			<ul style="list-style: none">
-				<li *ngFor="let number of numbers">
-					{{ number }}
-				</li>
-			</ul>
+			<a class="btn-big" routerLink="/resolve">
+				resolve route
+			</a>
+		</div>
+	</div>
+	<router-outlet></router-outlet>
+	<div class="row align-items-center" style="height: 100vh;">
+		<div class="col">
+			<button class="btn btn-primary" (click)="httpService.send(1)">get posts</button>
+
 		</div>
 		<div class="col">
-			<h2>Random</h2>
-			<ul style="list-style: none">
-				<li *ngFor="let random of randoms">
-					{{ random }}
-				</li>
-			</ul>
+			<button class="btn btn-danger" (click)="httpService.send(2)">get postId=1</button>
+
+		</div>
+		<div class="col">
+			<button class="btn btn-primary" (click)="httpService.send(3)">post posts</button>
+
+		</div>
+		<div class="col">
+			<button class="btn btn-danger" (click)="httpService.send(4)">get postError</button>
+
+		</div>
+		<div class="col">
+			<button class="btn btn-primary" (click)="httpService.send(5)">get postsText</button>
+
+		</div>
+		<div class="col">
+			<button class="btn btn-danger" (click)="httpService.send(6)">delete</button>
+
 		</div>
 
 	</div>

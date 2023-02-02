@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { interval, map, Subscription } from 'rxjs';
+import { HttpService } from './http.service';
 
 @Component({
     selector: 'app-root',
@@ -8,29 +8,9 @@ import { interval, map, Subscription } from 'rxjs';
 })
 export class AppComponent {
 
-    constructor() {
+    constructor(
+        public httpService: HttpService
+    ) {
     }
 
-    public numbers: Array<number> = [];
-    public numbersInterval$!: Subscription;
-    public randomInterval$!: Subscription;
-    public randoms: Array<string> = [];
-
-    public start() {
-        const intervalStream = interval(2000);
-        this.numbersInterval$ = intervalStream.subscribe(value => this.numbers.push(value));
-
-        this.randomInterval$ = intervalStream.pipe(
-            map(() => `Random value: ${Math.floor(Math.random() * 101)}`),
-        )
-            .subscribe(
-                value => this.randoms.push(value)
-            );
-
-    }
-
-    public stop() {
-        this.numbersInterval$.unsubscribe();
-        this.randomInterval$.unsubscribe();
-    }
 }
