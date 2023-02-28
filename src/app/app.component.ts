@@ -1,13 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { GetTodosService } from './get-todos.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, ComponentRef, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { DynamicsComponent } from './dynamics/dynamics.component';
 
-interface todo  {
-    id: number,
-    completed: boolean,
-    title: string,
-    userId: number,
-}
 
 @Component({
     selector: 'app-root',
@@ -15,24 +8,21 @@ interface todo  {
     styleUrls: ['./app.component.css'],
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-    constructor(
-        private getTodoService: GetTodosService,
-        private http: HttpClient) {
+    @ViewChild('dynamicTable', { read: ViewContainerRef })
+    private viewRef!: ViewContainerRef;
+    private componentRef!: ComponentRef<DynamicsComponent>
+
+    constructor() {
     }
 
-    public todos: todo[] = [];
-
-    ngOnInit() {
-        this.getTodoService.getTodos().subscribe({
-            next: (response: any) => {
-                this.todos = response;
-                console.log(this.todos);
-            },
-            error: (err: HttpErrorResponse) => {
-                console.log(err);
-            },
-        });
+    addComp() {
+        this.viewRef.clear();
+        this.componentRef = this.viewRef.createComponent(DynamicsComponent);
     }
+    delComp() {
+        this.viewRef.clear();
+    }
+
 }

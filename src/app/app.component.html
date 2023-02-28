@@ -1,7 +1,11 @@
 <div class="container text-center">
-	<h1>Todos</h1>
-	<div *ngFor="let todo of todos">
-		<p>id: {{todo.id}}</p>
-		<p>title: {{todo.title}}</p>
-	</div>
+	<h1>Шаблоны продвинутые</h1>
+	<button (click)="addComp()" class="btn btn-success">add</button>
+	<button (click)="delComp()" class="btn btn-danger">del</button>
+
+	<ng-template #dynamicTable>
+	</ng-template>
+
+	<ng-container *ngTemplateOutlet="dynamicTable">
+	</ng-container>
 </div>
