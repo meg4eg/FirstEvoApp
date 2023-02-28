@@ -1,38 +1,7 @@
-
 <div class="container text-center">
-	<div class="row align-items-start">
-		<div class="col">
-			<a class="btn-big" routerLink="/resolve">
-				resolve route
-			</a>
-		</div>
-	</div>
-	<router-outlet></router-outlet>
-	<div class="row align-items-center" style="height: 100vh;">
-		<div class="col">
-			<button class="btn btn-primary" (click)="httpService.send(1)">get posts</button>
-
-		</div>
-		<div class="col">
-			<button class="btn btn-danger" (click)="httpService.send(2)">get postId=1</button>
-
-		</div>
-		<div class="col">
-			<button class="btn btn-primary" (click)="httpService.send(3)">post posts</button>
-
-		</div>
-		<div class="col">
-			<button class="btn btn-danger" (click)="httpService.send(4)">get postError</button>
-
-		</div>
-		<div class="col">
-			<button class="btn btn-primary" (click)="httpService.send(5)">get postsText</button>
-
-		</div>
-		<div class="col">
-			<button class="btn btn-danger" (click)="httpService.send(6)">delete</button>
-
-		</div>
-
+	<h1>Todos</h1>
+	<div *ngFor="let todo of todos">
+		<p>id: {{todo.id}}</p>
+		<p>title: {{todo.title}}</p>
 	</div>
 </div>

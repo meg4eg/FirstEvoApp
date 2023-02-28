@@ -3,20 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ResolveComponent } from './resolve/resolve.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { GetTodosService } from './get-todos.service';
+import { AddIdInterceptor } from './add-id.interceptor';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ResolveComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
     ],
-    providers: [],
+    providers: [GetTodosService, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AddIdInterceptor,
+        multi: true,
+    }],
     bootstrap: [AppComponent],
 })
 export class AppModule {
